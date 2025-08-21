@@ -57,13 +57,12 @@ Choose one of the SQL Injection vulnerabilities in the login.ts file and explain
 
 Level 1 is also about interfacing with Snyk through natural language. In level 2, we want to seamlessly integrate into agentic workflows.
 
-To automatically trigger Snyk scans, create a file `.github/instructions/snyk.instructions.md` with the following contents:
+To automatically trigger Snyk scans, create a rule in your IDE with the following contents:
 
 ```
----
-applyTo: "**"
----
-After generating any code, always scan for new SAST vulnerabilities using Snyk's MCP server.
+Always run Snyk Code scanning tool for new first party code generated.
+If any security issues are found based on newly introduced or modified code or dependencies, attempt to fix the issues using the results context from Snyk.
+Rescan the code after fixing the issues to ensure that the issues were fixed and that there are no newly introduced issues.
 ```
 
 Now try fixing that SQL Injection.
@@ -75,14 +74,21 @@ Notice how Snyk Code is automatically invoked to verify that the fix is secure.
 
 Let's see Snyk Code automatically scan for vulnerabilities in brand new code.
 ```
-Now, add an API endpoint to check the user's role.
+Add an API endpoint to this file that returns a list of users based on a given search term.
 ```
 
 ## Level 3
 
-Now that we've added Snyk to our agentic workflow, let's use additional context to better prioritize and align to our internal security policies. 
+Now that we've added Snyk to our agentic workflow, let's use additional context to better prioritize and align to our internal security and AI policies. 
 
 ```
-Run the scan with Snyk and list the vulnerbalities that need fixing for this Tier 3 application.
+What is the security policy for this repo?
+```
+```
+Which vulnerabilities do I need to fix for this Tier 3 application?
+```
+
+```
+Create an AIBOM and check if it aligns to my company's AI Usage Policy.
 ```
 
